@@ -43,7 +43,7 @@ function jsonTest (object, expect) {
 const one = new Section({ slug: 'one' })
 const two = new Section({
   slug: 'two',
-  html: data => `section two html string`
+  html: data => 'section two html string'
 })
 
 //
@@ -65,7 +65,7 @@ for (const [object, expect] of [
     ansi: '# Section "two"',
     html: 'section two html string',
     data: {}
-  }],
+  }]
 ]) {
   jsonTest(object, expect)
 }
