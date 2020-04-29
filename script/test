@@ -1,0 +1,18 @@
+#!/bin/bash
+
+cd "$(iai repo)" || exit
+
+node test/section.js || exit
+node test/section-tree.js || exit
+node test/section-find.js || exit
+
+{
+  echo "TEST standard --fix"
+  standard --fix
+  code=$?
+  (( $code )) \
+    && echo "FAIL standard linter reported errors" \
+    || echo "PASS standard linter did not report errors"
+  echo "CODE $code"
+  exit $code
+}

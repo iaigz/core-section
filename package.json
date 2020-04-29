@@ -1,0 +1,29 @@
+{
+  "name": "@iaigz/core-section",
+  "version": "1.0.0",
+  "description": "iai core Section implementation for agnostic content layer",
+  "main": "Section.js",
+  "files": [
+    "Section.js"
+  ],
+  "scripts": {
+    "test": "./script/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iaigz/core-section.git"
+  },
+  "keywords": [
+    "iai",
+    "core",
+    "section",
+    "agnostic",
+    "content"
+  ],
+  "author": "Lorenzo García Rivera",
+  "license": "CC-BY-SA-4.0",
+  "bugs": {
+    "url": "https://github.com/iaigz/core-section/issues"
+  },
+  "homepage": "https://github.com/iaigz/core-section#readme"
+}
