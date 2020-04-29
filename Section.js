@@ -11,6 +11,8 @@ const constructor = module.exports = function Section (params) {
   assert(params.slug.length > 0, 'slug string must have length')
 
   params = {
+    text: '',
+    icon: null,
     parent: null,
     ...params
   }
@@ -21,6 +23,7 @@ const constructor = module.exports = function Section (params) {
 
   Object.defineProperties(this, {
     slug: { value: params.slug, enumerable: true },
+    text: { value: params.text || params.slug, enumerable: true },
     parent: { value: params.parent, enumerable: true },
     children: { value: [] }
   })
@@ -35,6 +38,10 @@ const constructor = module.exports = function Section (params) {
     id: { value: constructor.getId(this), enumerable: true },
     path: { value: constructor.getPath(this), enumerable: true }
   })
+
+  if (typeof params.html === 'function') {
+    this.html = params.html
+  }
 
   return this
 }
@@ -76,6 +83,8 @@ constructor.find = function (path) {
 
 const prototype = constructor.prototype = {}
 
+prototype.constructor = constructor
+
 prototype.toString = function () {
   return `[${this.constructor.name} ${this.path}]`
 }
@@ -91,8 +100,24 @@ prototype.tree = function () {
   return this.children
 }
 
-prototype.render = function () {
-  return ''
+prototype.html = function (data) {
+  return `<h1>${this.constructor.name} "${this.text}"</h1>`
+}
+
+prototype.ansi = function (data) {
+  return `# ${this.constructor.name} "${this.text}"`
+}
+
+prototype.json = function (data = {}) {
+  return JSON.stringify({
+    id: this.id,
+    path: this.path,
+    text: this.text,
+    icon: this.icon,
+    data: data,
+    html: this.html(data),
+    ansi: this.ansi(data)
+  })
 }
 
 /* vim: set expandtab: */

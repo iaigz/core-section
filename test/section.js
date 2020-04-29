@@ -92,7 +92,9 @@ try {
   }
   try {
     assert.strictEqual(section.parent, null, 'parent should be null')
-    assert.strictEqual(typeof section.render, 'function', 'missing render()')
+    assert.strictEqual(typeof section.json, 'function', 'missing json()')
+    assert.strictEqual(typeof section.html, 'function', 'missing html()')
+    assert.strictEqual(typeof section.ansi, 'function', 'missing ansi()')
     assert.strictEqual(typeof section.append, 'function', 'missing append()')
   } catch (err) {
     console.error(err.stack)
