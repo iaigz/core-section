@@ -24,6 +24,7 @@ const constructor = module.exports = function Section (params) {
   Object.defineProperties(this, {
     slug: { value: params.slug, enumerable: true },
     text: { value: params.text || params.slug, enumerable: true },
+    meta: { value: params.meta, enumerable: true },
     parent: { value: params.parent, enumerable: true },
     children: { value: [] }
   })

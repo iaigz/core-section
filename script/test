@@ -6,6 +6,7 @@ node test/section.js || exit
 node test/section-tree.js || exit
 node test/section-find.js || exit
 node test/section-json.js || exit
+node test/section-meta.js || exit
 
 {
   echo "TEST standard --fix"
