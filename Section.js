@@ -25,6 +25,15 @@ const constructor = module.exports = function Section (params) {
     slug: { value: params.slug, enumerable: true },
     text: { value: params.text || params.slug, enumerable: true },
     meta: { value: params.meta, enumerable: true },
+    root: {
+      enumerable: true,
+      get () {
+        if (params.parent === null) return 'root'
+        let section = this
+        while (section.parent !== null) { section = section.parent }
+        return section.id
+      }
+    },
     parent: { value: params.parent, enumerable: true },
     children: { value: [] }
   })
@@ -113,6 +122,7 @@ prototype.json = function (data = {}) {
   return JSON.stringify({
     id: this.id,
     path: this.path,
+    root: this.root,
     text: this.text,
     icon: this.icon,
     data: data,
